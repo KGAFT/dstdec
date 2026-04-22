@@ -11,7 +11,9 @@ add_library(dstdec ${SRC_FILES} ${DEF_FILES})
 target_include_directories(dstdec PUBLIC sources/)
 
 
-file(GLOB_RECURSE TEST_FILES testing/*.*)
-add_executable(testing ${TEST_FILES})
-target_link_libraries(testing PUBLIC dstdec)
-target_include_directories(testing PUBLIC testing/)
+file(GLOB_RECURSE TEST_FILES rust-ffi/*.*)
+add_library(dstdec-rust-ffi ${TEST_FILES})
+target_link_libraries(dstdec-rust-ffi PUBLIC dstdec)
+target_include_directories(dstdec-rust-ffi PUBLIC rust-ffi/)
+
+install(TARGETS dstdec-rust-ffi DESTINATION lib)
